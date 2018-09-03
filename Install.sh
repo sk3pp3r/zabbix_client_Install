@@ -17,13 +17,13 @@ fi
 
 if [ -x /usr/bin/apt-get ]; then
   apt-get update
-  apt-get -y install zabbix-agent sysv-rc-conf
-  sysv-rc-conf zabbix-agent on
+  apt-get -y install zabbix-agent 
+  systemctl enable zabbix-agent
   sed -i "s/Server=127.0.0.1/Server=${ZABBIX_SERVER_IP}/" /etc/zabbix/zabbix_agentd.conf
   sed -i "s/ServerActive=127.0.0.1/ServerActive=${ZABBIX_SERVER_IP}/" /etc/zabbix/zabbix_agentd.conf
   HOSTNAME=`hostname` && sed -i "s/Hostname=Zabbix\ server/Hostname=$HOSTNAME/" /etc/zabbix/zabbix_agentd.conf
   ufw allow 10050/tcp
-  service zabbix-agent restart
+  systemctl restart zabbix-agent 
 fi
   
 ### Only run it if we can (ie. on CentOS/RHEL)
