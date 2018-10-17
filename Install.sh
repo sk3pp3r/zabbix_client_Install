@@ -4,16 +4,17 @@
 # Haim Cohen 2018
 
 
-# Promte user for Zabbix Server :
-read -p 'Enter Zabbix Server IP or FQDN :' ZABBIX_SERVER_IP
-
-echo Zabbix Server is $ZABBIX_SERVER_IP && sleep 1
-
-
+# validate root permission
 if [ "$UID" -ne 0 ]; then
   echo "Please run as root"
   exit 1
 fi
+
+
+# Promte user for Zabbix Server :
+read -p 'Enter Zabbix Server IP or FQDN :' ZABBIX_SERVER_IP
+echo Zabbix Server is $ZABBIX_SERVER_IP && sleep 1
+
 
 ### Only run it on Ubuntu/Debian
 
