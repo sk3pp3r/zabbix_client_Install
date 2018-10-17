@@ -1,9 +1,9 @@
 #!/bin/bash -e
 
-# version 0.2
+# version 0.3
 # Haim Cohen 2018
 
-
+clear
 # validate root permission
 if [ "$UID" -ne 0 ]; then
   echo "Please run as root"
