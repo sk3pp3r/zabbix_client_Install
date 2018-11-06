@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-# version 0.3
+# version 0.4
 # Haim Cohen 2018
 
 clear
@@ -25,6 +25,7 @@ if [ -x /usr/bin/apt-get ]; then
   sed -i "s/Server=127.0.0.1/Server=${ZABBIX_SERVER_IP}/" /etc/zabbix/zabbix_agentd.conf
   sed -i "s/ServerActive=127.0.0.1/ServerActive=${ZABBIX_SERVER_IP}/" /etc/zabbix/zabbix_agentd.conf
   HOSTNAME=`hostname` && sed -i "s/Hostname=Zabbix\ server/Hostname=$HOSTNAME/" /etc/zabbix/zabbix_agentd.conf
+  sed -i "s/# HostMetadata=/HostMetadata=Linux/" /etc/zabbix/zabbix_agentd.conf
   ufw allow 10050/tcp
   systemctl restart zabbix-agent 
   exit 0
@@ -39,6 +40,7 @@ if [ -x /usr/bin/yum ]; then
   sed -i "s/Server=127.0.0.1/Server=${ZABBIX_SERVER_IP}/" /etc/zabbix/zabbix_agentd.conf
   sed -i "s/ServerActive=127.0.0.1/ServerActive=${ZABBIX_SERVER_IP}/" /etc/zabbix/zabbix_agentd.conf
   HOSTNAME=`hostname` && sed -i "s/Hostname=Zabbix\ server/Hostname=$HOSTNAME/" /etc/zabbix/zabbix_agentd.conf
+  sed -i "s/# HostMetadata=/HostMetadata=Linux/" /etc/zabbix/zabbix_agentd.conf
   firewall-cmd --add-port=10050/tcp --permanent 
   firewall-cmd --reload
   service zabbix-agent restart
@@ -53,6 +55,7 @@ if [ -x /usr/bin/zypper ]; then
   sed -i "s/Server=127.0.0.1/Server=${ZABBIX_SERVER_IP}/" /etc/zabbix/zabbix_agentd.conf
   sed -i "s/ServerActive=127.0.0.1/ServerActive=${ZABBIX_SERVER_IP}/" /etc/zabbix/zabbix_agentd.conf
   HOSTNAME=`hostname` && sed -i "s/Hostname=Zabbix\ server/Hostname=$HOSTNAME/" /etc/zabbix/zabbix_agentd.conf
+  sed -i "s/# HostMetadata=/HostMetadata=Linux/" /etc/zabbix/zabbix_agentd.conf
   rczabbix-agentd start
   chkconfig --set zabbix-agentd on
   exit 0
