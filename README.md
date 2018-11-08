@@ -7,4 +7,4 @@ Zabbix is an enterprise-class open source distributed monitoring solution.
 
 # How to use?
 The simple way is to execute it with one line test:<br/>
-`curl -Ls "https://raw.githubusercontent.com/sk3pp3r/zabbix_client_Install/master/Install.sh" | bash`
+`bash <( curl -Ss https://raw.githubusercontent.com/sk3pp3r/zabbix_client_Install/master/Install.sh)`
