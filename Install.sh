@@ -1,7 +1,8 @@
 #!/bin/bash -e
-
+# ####################
 # version 0.4
 # Haim Cohen 2018
+# ####################
 
 clear
 # validate root permission
@@ -9,6 +10,7 @@ if [ "$UID" -ne 0 ]; then
   echo "Please run as root"
   exit 1
 fi
+
 
 
 # Promte user for Zabbix Server :
